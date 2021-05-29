@@ -9,18 +9,30 @@ class stateSummary extends StatefulWidget {
 class _stateSummaryState extends State<stateSummary> {
   @override
   Widget build(BuildContext context) {
+
+    Map rcvdData = ModalRoute.of(context).settings.arguments;
+
+    String txt = "Try again later";
+
+    List countries = rcvdData["Countries"];
+
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            Text("STATE SUMMARY"),
-            ElevatedButton(onPressed: () {
-              Navigator.pushReplacementNamed(context, '/');
-            },
-                child: Text("Home"))],
-        ),
+        body: ListView.builder(
+            itemCount: countries.length,
+            itemBuilder: (context,index)=>Container(
+          child:
+          rcvdData!={}?
+          Text("${countries[index]["Country"]}")
+              :
+           Text(txt)
+        )),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/');
+          },
+          child: Text("Home")),
       ),
     );
   }
 }
-

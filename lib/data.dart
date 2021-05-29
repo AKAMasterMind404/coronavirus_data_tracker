@@ -26,6 +26,7 @@ String amountParser(int amount) {
 }
 // summaryData["Global"]["TotalConfirmed"]
 // Total Confirmed Cases
+
 Column NumberColumn({int cases,String acr, double fsize}) {
 
   Map m1={
@@ -40,23 +41,30 @@ Column NumberColumn({int cases,String acr, double fsize}) {
 //      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
     Container(
-      child: Image.asset(m1[acr][2]),
+      height: fsize*6,
+      child: Image.asset(m1[acr][2], fit: BoxFit.fill,),
     ),
     SizedBox(height: 5,),
-    Text(
+    FittedBox(
+      fit: BoxFit.fill,
+      child: Text(
 //      "10",
-      "${amountParser(cases)}",
-      style: TextStyle(
-          color: m1[acr][1], fontWeight: FontWeight.bold,
-        fontSize: fsize,
+        "${amountParser(cases)}",
+        style: TextStyle(
+            color: m1[acr][1], fontWeight: FontWeight.bold,
+        fontSize: fsize*0.8,
+        ),
       ),
     ),
     SizedBox(height: 5),
-    Text(
-      text,
-      style: TextStyle(
-          color: Colors.black, fontWeight: FontWeight.bold,
-        fontSize: fsize,
+    FittedBox(
+      fit: BoxFit.fill,
+      child: Text(
+        text,
+        style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold,
+        fontSize: fsize*0.8,
+        ),
       ),
     )
     ]
